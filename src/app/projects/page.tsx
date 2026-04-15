@@ -1,18 +1,21 @@
 const projects = [
   {
-    title: "Website Portfolio",
-    description: "Website cá nhân xây dựng bằng Next.JS và Tailwind CSS",
-    tech: ["Next.JS", "Tailwind CSS", "TypeScript"],
+    title: "Code SparkX - Cloud-based Online IDE",
+    description:
+      "Môi trường phát triển tích hợp trên nền web. Cho phép người dùng viết code, biên dịch và thực thi mã theo thời gian thực một cách an toàn bằng cách cô lập môi trường trong các Docker containers (Sandbox environment).",
+    tech: ["Next.js", "Node.js", "Docker", "TypeScript"],
   },
   {
-    title: "Ứng dụng Quản lý Công việc",
-    description: "Ứng dụng Todo App với React và Local Storage",
-    tech: ["React", "CSS Modules", "JavaScript"],
+    title: "Hệ thống Quản lý và Điều hành Đội xe (Fleet Management)",
+    description:
+      "Nền tảng quản lý xe dịch vụ (taxi/xe điện) quy mô doanh nghiệp. Tích hợp theo dõi trạng thái xe thời gian thực, quản lý phân ca, và dashboard thống kê hiệu suất hoạt động để tối ưu hóa quy trình vận hành.",
+    tech: [".NET Core Web API", "React", "Microsoft Azure", "SQL Server"],
   },
   {
-    title: "API RESTful",
-    description: "API quản lý sản phẩm với Node.js và Express",
-    tech: ["Node.js", "Express", "MongoDB"],
+    title: "Nền tảng E-commerce & Quản lý Đơn hàng",
+    description:
+      "Hệ thống thương mại điện tử hiệu suất cao tối ưu SEO. Kiến trúc tách biệt Front-end và Back-end, tích hợp cổng thanh toán, quản lý kho hàng và thiết lập luồng CI/CD tự động deploy lên server.",
+    tech: ["Next.js", "Express", "MongoDB", "DevOps / CI/CD"],
   },
 ];
 export default function ProjectsPage() {
