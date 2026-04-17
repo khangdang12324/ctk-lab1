@@ -1,11 +1,11 @@
-export default function BlogPostLoading() {
+﻿export default function BlogPostLoading() {
   return (
     <div className="max-w-5xl mx-auto px-4 py-12 animate-pulse">
       <div className="h-4 w-40 bg-gray-200 rounded mb-6" />
 
       <article>
         <div className="flex items-center gap-3 mb-4">
-          <div className="h-6 w-20 bg-blue-100 rounded" />
+          <div className="h-6 w-20 bg-emerald-100 rounded" />
           <div className="h-4 w-28 bg-gray-200 rounded" />
           <div className="h-4 w-24 bg-gray-200 rounded" />
         </div>
@@ -23,3 +23,4 @@ export default function BlogPostLoading() {
     </div>
   );
 }
+

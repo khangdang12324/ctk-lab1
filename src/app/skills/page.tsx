@@ -1,4 +1,4 @@
-const skillGroups = [
+﻿const skillGroups = [
   {
     title: "Ngon ngu lap trinh",
     skills: ["JavaScript", "TypeScript", "C#", "SQL"],
@@ -33,7 +33,7 @@ export default function SkillsPage() {
               {group.skills.map((skill) => (
                 <li
                   key={skill}
-                  className="bg-blue-50 text-blue-700 rounded-md px-3 py-2"
+                  className="bg-emerald-50 text-emerald-700 rounded-md px-3 py-2"
                 >
                   {skill}
                 </li>
@@ -45,3 +45,4 @@ export default function SkillsPage() {
     </div>
   );
 }
+

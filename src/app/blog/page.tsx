@@ -1,5 +1,6 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { posts } from "@/data/posts";
+
 export default function BlogPage() {
   return (
     <div>
@@ -12,7 +13,7 @@ export default function BlogPage() {
           >
             <div className="flex items-center gap-3 mb-2">
               <span
-                className="bg-blue-100 text-blue-700 text-xs px-2 py-1
+                className="bg-emerald-100 text-emerald-700 text-xs px-2 py-1
 rounded"
               >
                 {post.category}
@@ -21,7 +22,7 @@ rounded"
             </div>
             <Link href={`/blog/${post.slug}`}>
               <h2
-                className="text-xl font-semibold mb-2 hover:text-blue-600
+                className="text-xl font-semibold mb-2 hover:text-emerald-600
 transition-colors"
               >
                 {post.title}
@@ -30,7 +31,7 @@ transition-colors"
             <p className="text-gray-600">{post.excerpt}</p>
             <Link
               href={`/blog/${post.slug}`}
-              className="inline-block mt-3 text-blue-600 text-sm hover:underline"
+              className="inline-block mt-3 text-emerald-600 text-sm hover:underline"
             >
               Đọc thêm →
             </Link>

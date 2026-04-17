@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPostBySlug, posts } from "@/data/posts";
 interface BlogPostPageProps {
@@ -17,13 +17,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     <div>
       <Link
         href="/blog"
-        className="text-blue-600 hover:underline text-sm mb-6 inline-block"
+        className="text-emerald-600 hover:underline text-sm mb-6 inline-block"
       >
         ← Quay lại danh sách
       </Link>
       <article>
         <div className="flex items-center gap-3 mb-4">
-          <span className="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded">
+          <span className="bg-emerald-100 text-emerald-700 text-xs px-2 py-1 rounded">
             {post.category}
           </span>
           <span className="text-sm text-gray-500">{post.author}</span>

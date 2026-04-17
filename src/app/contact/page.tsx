@@ -1,4 +1,4 @@
-export default function ContactPage() {
+﻿export default function ContactPage() {
   return (
     <div className="max-w-5xl mx-auto px-4 py-12">
       <h1 className="text-3xl font-bold mb-6">Liên hệ</h1>
@@ -8,7 +8,7 @@ export default function ContactPage() {
             <strong>Email:</strong>{" "}
             <a
               href="mailto:2212387@dlu.edu.vn"
-              className="text-blue-600 hover:underline"
+              className="text-emerald-600 hover:underline"
             >
               2212387@dlu.edu.vn
             </a>
@@ -19,7 +19,7 @@ export default function ContactPage() {
               href="https://github.com/khangdang12324"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 hover:underline"
+              className="text-emerald-600 hover:underline"
             >
               github.com/khangdang12324
             </a>

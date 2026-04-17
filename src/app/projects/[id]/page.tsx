@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProjectById, projects } from "@/data/projects";
 
@@ -20,7 +20,7 @@ export default async function ProjectDetailPage({
     <div className="max-w-5xl mx-auto px-4 py-12">
       <Link
         href="/projects"
-        className="text-blue-600 hover:underline text-sm mb-6 inline-block"
+        className="text-emerald-600 hover:underline text-sm mb-6 inline-block"
       >
         ← Quay lại danh sách
       </Link>
@@ -30,12 +30,12 @@ export default async function ProjectDetailPage({
         <p className="text-lg text-gray-600 mb-6">{project.description}</p>
 
         <div className="mb-8">
-          <h2 className="text-lg font-semibold mb-3">Cong nghe su dung:</h2>
+          <h2 className="text-lg font-semibold mb-3">Công nghệ sử dụng:</h2>
           <div className="flex gap-2 flex-wrap">
             {project.tech.map((t) => (
               <span
                 key={t}
-                className="bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium"
+                className="bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-medium"
               >
                 {t}
               </span>
@@ -50,9 +50,9 @@ export default async function ProjectDetailPage({
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                className="bg-emerald-600 text-white px-6 py-2 rounded-lg hover:bg-emerald-700 transition-colors"
               >
-                Xem du an →
+                Xem dự án →
               </a>
             )}
             {project.github && (

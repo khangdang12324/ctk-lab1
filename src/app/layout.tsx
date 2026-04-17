@@ -13,7 +13,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi" suppressHydrationWarning>
-      <body className="min-h-screen flex flex-col" suppressHydrationWarning>
+      <body
+        className="min-h-screen flex flex-col bg-zinc-50 text-zinc-900 dark:bg-gray-950 dark:text-zinc-100 transition-colors duration-300"
+        suppressHydrationWarning
+      >
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

@@ -1,4 +1,4 @@
-export interface Post {
+﻿export interface Post {
   slug: string;
   title: string;
   excerpt: string;
@@ -7,6 +7,7 @@ export interface Post {
   category: string;
   author: string;
 }
+
 export const posts: Post[] = [
   {
     slug: "gioi-thieu-nextjs",
@@ -38,7 +39,6 @@ Ví dụ, thay vì viết:
 Bạn viết trực tiếp trong HTML:
 <div class="p-4 rounded-lg shadow-md">...</div>
 
-Ưu điểm:
 - Không cần đặt tên class
 - Không cần chuyển qua lại giữa file HTML và CSS
 - File CSS cuối cùng rất nhỏ (chỉ chứa class đã dùng)`,
@@ -102,6 +102,7 @@ Tại sao dùng Git:
     author: "Đặng Nguyễn Phúc Khang",
   },
 ];
+
 export function getPostBySlug(slug: string): Post | undefined {
   return posts.find((post) => post.slug === slug);
 }
