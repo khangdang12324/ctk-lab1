@@ -1,4 +1,7 @@
 ﻿import Link from "next/link";
+import Counter from "@/components/counter";
+import ThemeToggle from "@/components/theme-toggle";
+import CopyButton from "@/components/copy-button";
 
 export default function HomePage() {
   return (
@@ -57,6 +60,28 @@ export default function HomePage() {
           ))}
         </div>
       </div>
+
+      {/* Client components practice */}
+      <div className="mb-16 bg-white border border-zinc-200 rounded-3xl p-8 shadow-sm">
+        <h2 className="text-2xl font-semibold text-zinc-900 mb-6 text-center">
+          Thực hành Client Components
+        </h2>
+        <div className="grid gap-6 md:grid-cols-3 place-items-center">
+          <div className="space-y-2 text-center">
+            <p className="text-sm text-zinc-600">Counter</p>
+            <Counter />
+          </div>
+          <div className="space-y-2 text-center">
+            <p className="text-sm text-zinc-600">ThemeToggle (demo)</p>
+            <ThemeToggle />
+          </div>
+          <div className="space-y-2 text-center">
+            <p className="text-sm text-zinc-600">CopyButton</p>
+            <CopyButton textToCopy="2212387@dlu.edu.vn" />
+          </div>
+        </div>
+      </div>
+
       {/* CTA section */}
       <div className="bg-white border border-zinc-200 rounded-3xl p-8 text-center shadow-sm">
         <h2 className="text-2xl font-semibold text-zinc-900 mb-3">
