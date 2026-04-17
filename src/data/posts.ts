@@ -60,6 +60,41 @@ Tham gia các cộng đồng lập trình để học hỏi và chia sẻ kinh n
     date: "2025-02-01",
     category: "Học tập",
   },
+  {
+    slug: "phat-trien-web-voi-nextjs",
+    title: "Phát triển web với Next.JS — Hướng dẫn cơ bản",
+    excerpt:
+      "Bắt đầu hành trình phát triển web hiện đại với Next.JS qua hướng dẫn chi tiết.",
+    content:
+      "Next.JS là một framework React mạnh mẽ giúp bạn xây dựng các ứng dụng web hiệu suất cao. Dưới đây là hướng dẫn cơ bản để bắt đầu:",
+    date: "2025-02-10",
+    category: "Công nghệ",
+  },
+  {
+    slug: "git-github-version-control",
+    title: "Git & GitHub — Quản lý phiên bản code hiệu quả",
+    excerpt:
+      "Tìm hiểu cách sử dụng Git và GitHub để quản lý mã nguồn và cộng tác trong dự án.",
+    content: `Git là một hệ thống kiểm soát phiên bản phân tán, cho phép bạn theo dõi các thay đổi trong mã nguồn. GitHub là nền tảng lưu trữ kho Git trực tuyến.
+
+Các lệnh cơ bản Git:
+- git init: Khởi tạo repository
+- git add: Thêm file vào staging area
+- git commit: Lưu thay đổi vào history
+- git push: Đẩy code lên remote repository
+- git pull: Kéo code mới nhất từ remote
+- git branch: Tạo và quản lý nhánh
+- git merge: Gộp các nhánh lại
+
+Tại sao dùng Git:
+- Lưu trữ toàn bộ lịch sử thay đổi
+- Hỗ trợ làm việc nhóm
+- Dễ kiểm tra lỗi và sử dụng git revert
+- Công cụ quản lý branch linh hoạt
+- Tích hợp với các CI/CD pipeline`,
+    date: "2025-02-15",
+    category: "Công nghệ",
+  },
 ];
 export function getPostBySlug(slug: string): Post | undefined {
   return posts.find((post) => post.slug === slug);
