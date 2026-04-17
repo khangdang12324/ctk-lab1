@@ -12,6 +12,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   if (!post) {
     notFound();
   }
+
   return (
     <div>
       <Link
