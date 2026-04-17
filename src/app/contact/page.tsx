@@ -7,21 +7,21 @@ export default function ContactPage() {
           <p>
             <strong>Email:</strong>{" "}
             <a
-              href="mailto:nguyenvana@sv.dlu.edu.vn"
+              href="mailto:2212387@dlu.edu.vn"
               className="text-blue-600 hover:underline"
             >
-              nguyenvana@sv.dlu.edu.vn
+              2212387@dlu.edu.vn
             </a>
           </p>
           <p>
             <strong>GitHub:</strong>{" "}
             <a
-              href="https://github.com/nguyenvana"
+              href="https://github.com/khangdang12324"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
             >
-              github.com/nguyenvana
+              github.com/khangdang12324
             </a>
           </p>
           <p>
