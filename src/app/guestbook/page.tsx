@@ -1,31 +1,43 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import useSWR from "swr";
 import { GuestbookEntry } from "@/data/guestbook";
+
+const PAGE_SIZE = 5;
+
+const fetcher = async (url: string): Promise<GuestbookEntry[]> => {
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error("Lỗi khi tải dữ liệu");
+  }
+  return res.json();
+};
+
 export default function GuestbookPage() {
-  const [entries, setEntries] = useState<GuestbookEntry[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const {
+    data: entries = [],
+    error,
+    isLoading,
+    mutate,
+  } = useSWR<GuestbookEntry[]>("/api/guestbook", fetcher);
+
   // State cho form
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [submitting, setSubmitting] = useState(false);
-  // Fetch danh sách lời nhắn
-  async function fetchEntries() {
-    try {
-      const res = await fetch("/api/guestbook");
-      if (!res.ok) throw new Error("Lỗi khi tải dữ liệu");
-      const data = await res.json();
-      setEntries(data);
-    } catch (err) {
-      setError("Không thể tải sổ lưu bút. Vui lòng thử lại.");
-    } finally {
-      setLoading(false);
-    }
-  }
-  // Gọi fetchEntries khi component mount
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.max(1, Math.ceil(entries.length / PAGE_SIZE));
+  const startIndex = (currentPage - 1) * PAGE_SIZE;
+  const paginatedEntries = entries.slice(startIndex, startIndex + PAGE_SIZE);
+
   useEffect(() => {
-    fetchEntries();
-  }, []);
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages]);
+
   // Xử lý gửi lời nhắn mới
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -41,8 +53,8 @@ export default function GuestbookPage() {
       // Reset form và tải lại danh sách
       setName("");
       setMessage("");
-      await fetchEntries();
-    } catch (err) {
+      await mutate();
+    } catch {
       alert("Không thể gửi lời nhắn. Vui lòng thử lại.");
     } finally {
       setSubmitting(false);
@@ -50,15 +62,19 @@ export default function GuestbookPage() {
   }
   // Xử lý xóa lời nhắn
   async function handleDelete(id: string) {
+    if (deletingId === id) return;
     if (!confirm("Bạn có chắc muốn xóa lời nhắn này?")) return;
+    setDeletingId(id);
     try {
       const res = await fetch(`/api/guestbook/${id}`, {
         method: "DELETE",
       });
       if (!res.ok) throw new Error("Lỗi khi xóa");
-      await fetchEntries();
-    } catch (err) {
+      await mutate();
+    } catch {
       alert("Không thể xóa lời nhắn. Vui lòng thử lại.");
+    } finally {
+      setDeletingId(null);
     }
   }
   return (
@@ -116,16 +132,20 @@ transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         </button>
       </form>
       {/* Danh sách lời nhắn */}
-      {loading && (
+      {isLoading && (
         <div className="text-center py-8 text-gray-500">
           Đang tải sổ lưu bút...
         </div>
       )}
-      {error && <div className="text-center py-8 text-red-500">{error}</div>}
-      {!loading && !error && (
+      {error && (
+        <div className="text-center py-8 text-red-500">
+          Không thể tải sổ lưu bút. Vui lòng thử lại.
+        </div>
+      )}
+      {!isLoading && !error && (
         <div className="space-y-4">
           <p className="text-sm text-gray-400">{entries.length} lời nhắn</p>
-          {entries.map((entry) => (
+          {paginatedEntries.map((entry) => (
             <div
               key={entry.id}
               className="border rounded-lg p-4 hover:shadow-sm transition-shadow"
@@ -140,9 +160,10 @@ transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   </span>
                   <button
                     onClick={() => handleDelete(entry.id)}
+                    disabled={deletingId === entry.id}
                     className="text-xs text-red-400 hover:text-red-600 transitioncolors"
                   >
-                    Xóa
+                    {deletingId === entry.id ? "Đang xóa..." : "Xóa"}
                   </button>
                 </div>
               </div>
@@ -153,6 +174,34 @@ transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             <p className="text-center text-gray-400 py-8">
               Chưa có lời nhắn nào. Hãy là người đầu tiên!
             </p>
+          )}
+
+          {entries.length > 0 && (
+            <div className="flex items-center justify-between pt-2">
+              <button
+                type="button"
+                onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
+                disabled={currentPage === 1}
+                className="px-4 py-2 text-sm rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Trang trước
+              </button>
+
+              <span className="text-sm text-gray-500">
+                Trang {currentPage}/{totalPages}
+              </span>
+
+              <button
+                type="button"
+                onClick={() =>
+                  setCurrentPage((prev) => Math.min(totalPages, prev + 1))
+                }
+                disabled={currentPage === totalPages}
+                className="px-4 py-2 text-sm rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Trang sau
+              </button>
+            </div>
           )}
         </div>
       )}
