@@ -1,8 +1,14 @@
 import { guestbookEntries } from "@/data/guestbook";
 import GuestbookForm from "@/components/guestbook-form";
 import DeleteButton from "@/components/delete-button";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+
+function getInitial(name: string) {
+  return name.trim().charAt(0).toUpperCase() || "?";
+}
+
 export default function GuestbookPage() {
   const entries = guestbookEntries;
   return (
@@ -17,9 +23,16 @@ export default function GuestbookPage() {
           <Card key={entry.id}>
             <CardContent className="pt-4">
               <div className="flex items-center justify-between mb-2">
-                <span className="font-semibold text-gray-800">
-                  {entry.name}
-                </span>
+                <div className="flex items-center gap-3">
+                  <Avatar className="h-9 w-9">
+                    <AvatarFallback className="text-xs font-semibold">
+                      {getInitial(entry.name)}
+                    </AvatarFallback>
+                  </Avatar>
+                  <span className="font-semibold text-gray-800">
+                    {entry.name}
+                  </span>
+                </div>
                 <div className="flex items-center gap-3">
                   <span className="text-xs text-gray-400">
                     {new Date(entry.createdAt).toLocaleDateString("vi-VN")}

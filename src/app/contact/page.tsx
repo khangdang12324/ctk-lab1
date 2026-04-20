@@ -2,6 +2,10 @@
 import { useActionState, useState } from "react";
 import { sendContactMessage, ContactFormState } from "./actions";
 import SubmitButton from "@/components/submit-button";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 const initialState: ContactFormState = {
   success: false,
 };
@@ -58,31 +62,27 @@ text-center"
               <p className="text-green-600">
                 Cảm ơn bạn đã liên hệ. Tôi sẽ phản hồi sớm nhất có thể.
               </p>
-              <button
+              <Button
                 type="button"
+                variant="outline"
                 onClick={() => setShowFormAfterSuccess(true)}
-                className="mt-4 inline-flex items-center justify-center rounded-lg border border-green-300 px-4 py-2 text-sm font-medium text-green-700 hover:bg-green-100 transition-colors"
+                className="mt-4 border-green-300 text-green-700 hover:bg-green-100"
               >
                 Gửi tin nhắn khác
-              </button>
+              </Button>
             </div>
           ) : (
             <form action={formAction} className="space-y-4">
               <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
+                <Label htmlFor="name" className="mb-1 block">
                   Họ và tên
-                </label>
-                <input
+                </Label>
+                <Input
                   id="name"
                   name="name"
                   type="text"
                   placeholder="Nguyễn Văn A"
                   required
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none
-focus:ring-2 focus:ring-blue-500"
                 />
                 {state.errors?.name && (
                   <p className="text-red-500 text-sm mt-1">
@@ -91,20 +91,15 @@ focus:ring-2 focus:ring-blue-500"
                 )}
               </div>
               <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
+                <Label htmlFor="email" className="mb-1 block">
                   Email
-                </label>
-                <input
+                </Label>
+                <Input
                   id="email"
                   name="email"
                   type="email"
                   placeholder="email@example.com"
                   required
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none
-focus:ring-2 focus:ring-blue-500"
                 />
                 {state.errors?.email && (
                   <p className="text-red-500 text-sm mt-1">
@@ -113,20 +108,15 @@ focus:ring-2 focus:ring-blue-500"
                 )}
               </div>
               <div>
-                <label
-                  htmlFor="subject"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
+                <Label htmlFor="subject" className="mb-1 block">
                   Tiêu đề
-                </label>
-                <input
+                </Label>
+                <Input
                   id="subject"
                   name="subject"
                   type="text"
                   placeholder="Chủ đề bạn muốn trao đổi"
                   required
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none
-focus:ring-2 focus:ring-blue-500"
                 />
                 {state.errors?.subject && (
                   <p className="text-red-500 text-sm mt-1">
@@ -135,20 +125,16 @@ focus:ring-2 focus:ring-blue-500"
                 )}
               </div>
               <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
+                <Label htmlFor="message" className="mb-1 block">
                   Nội dung
-                </label>
-                <textarea
+                </Label>
+                <Textarea
                   id="message"
                   name="message"
                   placeholder="Viết nội dung tin nhắn..."
                   required
                   rows={5}
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none
-focus:ring-2 focus:ring-blue-500 resize-none"
+                  className="resize-none"
                 />
                 {state.errors?.message && (
                   <p className="text-red-500 text-sm mt-1">
