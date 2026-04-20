@@ -47,6 +47,25 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  const now = Date.now();
+  const duplicateInOneMinute = guestbookEntries.some((entry) => {
+    const sameContent =
+      entry.name.trim().toLowerCase() === name.toLowerCase() &&
+      entry.message.trim().toLowerCase() === message.toLowerCase();
+    const createdAtMs = new Date(entry.createdAt).getTime();
+    return sameContent && now - createdAtMs <= 60_000;
+  });
+
+  if (duplicateInOneMinute) {
+    return NextResponse.json(
+      {
+        error:
+          "Không thể gửi lời nhắn trùng lặp (cùng name và message) trong vòng 1 phút",
+      },
+      { status: 400 },
+    );
+  }
+
   // Tạo entry mới
   const newEntry = {
     id: Date.now().toString(),
